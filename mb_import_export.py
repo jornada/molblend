@@ -44,6 +44,14 @@ from molblend.elements_default import ELEMENTS as ELEMENTS_DEFAULT
 logger = logging.getLogger(__name__)
 A_per_Bohr = 0.529177249
 
+import os
+# Read configuration file ~/.molblend_config.py, if present.
+# The user can use this file to overwrite "mcubes_path"
+fname_cfg = os.path.expanduser('~/.molblend_config.py')
+if os.path.exists(fname_cfg):
+    with open(fname_cfg) as f:
+        exec(f.read())
+
 # Try to load mcubes module for iso surface creation
 try:
     import mcubes
